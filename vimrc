@@ -57,6 +57,9 @@
   Plugin 'tpope/vim-surround' 
   Plugin 'tomtom/tcomment_vim' 
 " ---------------------------- 
+  
+" CLOSE BUFFERS WITHOUT CLOSE THE WINDOW
+  Plugin 'qpkorr/vim-bufkill'
 
 " INDENTATION
   Plugin 'yggdroot/indentline'
@@ -471,16 +474,13 @@ set completeopt=longest,menuone
 
 let g:rubycomplete_rails = 1
 
-map <F4> :bd<CR>
+" vim -budffil(close buffer)
+
+nnoremap <F4> :BD<CR>
 
 " Move to the previous buffer with "gp"
  nnoremap <F5> :bp<CR>
 "
 " " Move to the next buffer with "gn"
  nnoremap <F6> :bn<CR>
-"
-" " List all possible buffers with "gl"
- "nnoremap gl :ls<CR>
-"
-" " List all possible buffers with "gb" and accept a new buffer argument [1]
-"nnoremap gb :ls<CR>:b}}}
+"}}}
