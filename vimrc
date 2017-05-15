@@ -41,10 +41,11 @@
 
 " THEME
   Plugin 'sickill/vim-monokai' 
-  
+  Plugin 'ajh17/spacegray.vim' 
+
 " AUTOCOMPLETE	
   Plugin 'valloric/youcompleteme' 
-   
+  
 " RUBY ON RAILS -------
   Plugin 'tpope/vim-rails' 
   Plugin 'vim-ruby/vim-ruby' 
@@ -71,8 +72,10 @@
   Plugin 'mattn/emmet-vim' 
 
 " JAVASCRIPT
-  Plugin 'marijnh/tern_for_vim' 
+  Plugin 'pangloss/vim-javascript'
 
+  Plugin 'marijnh/tern_for_vim' 
+ 
 " TO SEE LATER...{{{
 " ctags
 " ctag
@@ -83,13 +86,12 @@
 " Plugin 'szw/vim-ctrlspace' "(x)
 " Plugin 'wincent/command-t' "(x)
 " Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'pangloss/vim-javascript' "(x)
 " Plugin 'jelera/vim-javascript-syntax' "(x)
 " Plugin 'othree/javascript-libraries-syntax.vim' "(x)
 " Plugin 'easymotion/vim-easymotion'
 " Plugin 'arnaud-lb/vim-php-namespace'
 " Plugin 'ervandew/supertab'
-" Plugin 'JamshedVesuna/vim-markdown-preview'}}}}}}
+" Plugin 'JamshedVesuna/vim-markzadown-preview'}}}}}}
 
 	
  call vundle#end()            
@@ -98,15 +100,27 @@
 " #####################  END VUNDLE  ############################
 " --------------------------------------------------------------- 
 
-
-
 " ##################### BEGIN NERDTREE #########################{{{
 " -------------------------------------------------------------- 
-map <C-n> :NERDTreeToggle<CR> 
-
 let g:NERDTreeDirArrowExpandable = '▸'
-
 let g:NERDTreeDirArrowCollapsible = '▾'
+map <C-n> :NERDTreeTabsToggle<CR>
+map <leader>e :NERDTreeFind<CR>
+nmap <leader>nt :NERDTreeFind<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=0
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+"let g:nerdtree_tabs_open_on_gui_startup=1
+"let g:nerdtree_tabs_open_on_console_startup=1
+"map <C-m> <plug>NERDTreeMirrorOpen<CR>
+"locate current file in NERDTree
+map <leader>l :NERDTreeFind<cr>
+"close vim if only nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " #####################  END NERDTREE ###########################
 " --------------------------------------------------------------- 
@@ -207,11 +221,18 @@ let g:NERDTreeIndicatorMapCustom = {
 " -------------------------------------------------------------
 "}}}
 
+" vim - javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
 
-""tern-vim
-let g:tern_show_argument_hints='on_hold'
-" and 
+
+
+"enable keyboard shorcuts
 let g:tern_map_keys=1
+
+" show arguments hists
+let g:tern_show_argument_hints='on_hold'
 
 
 "ultisnips
@@ -313,7 +334,7 @@ let g:rubycomplete_rails = 1
 
 " -------------------- BEGIN COLORSCHEME-----------------------
 " -------------------------------------------------------------
-colorscheme monokai
+colorscheme spacegray "monokai
   
 set term=screen-256color
 
@@ -445,6 +466,8 @@ set ffs=unix,dos,mac " Use unix as the standard file type
 
 set timeoutlen=1000 ttimeoutlen=0 "" Removing the delay of ESC key
 
+"" Do not add a newline when select a suggestion on youcompleteme box
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 "" Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
