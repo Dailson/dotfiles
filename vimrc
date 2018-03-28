@@ -1,4 +1,4 @@
-" ###############################################################
+" ################################################################
 " #               .::MY VIMRC CONFIGURATION::.                  #
 " ###############################################################
 " #                                                             #
@@ -22,60 +22,60 @@
 
 " VUNDLE
   Plugin 'VundleVim/Vundle.vim'
-  
-" NAVIGATION 
+"  
+"" NAVIGATION 
   Plugin 'scrooloose/nerdtree'
   Plugin 'jistr/vim-nerdtree-tabs' 
-	
-" SYNTAX
+"	
+"" SYNTAX
   Plugin 'scrooloose/syntastic'
-	
-" STATUSLINE AND THEME 
+"	
+"" STATUSLINE AND THEME 
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
-  
-" GIT
+"  
+"" GIT
   Plugin 'tpope/vim-fugitive' 
   Plugin 'xuyuanp/nerdtree-git-plugin' 
   Plugin 'airblade/vim-gitgutter'
-
-" THEME
+"
+"" THEME
   Plugin 'sickill/vim-monokai' 
   Plugin 'ajh17/spacegray.vim' 
-
-" AUTOCOMPLETE	
+"
+"" AUTOCOMPLETE	
   Plugin 'valloric/youcompleteme' 
-  
-" RUBY ON RAILS -------
+"  
+"" RUBY ON RAILS -------
   Plugin 'tpope/vim-rails' 
   Plugin 'vim-ruby/vim-ruby' 
-
+"
   Plugin 'sirver/ultisnips' 
   Plugin 'honza/vim-snippets'
-
+"
   Plugin 'rking/ag.vim'
   Plugin 'tpope/vim-repeat' 
   Plugin 'tpope/vim-surround' 
   Plugin 'tomtom/tcomment_vim' 
-" ---------------------------- 
-  
-" CLOSE BUFFERS WITHOUT CLOSE THE WINDOW
+"" ---------------------------- 
+"  
+"" CLOSE BUFFERS WITHOUT CLOSE THE WINDOW
   Plugin 'qpkorr/vim-bufkill'
-
-" INDENTATION
+"
+"" INDENTATION
   Plugin 'yggdroot/indentline'
-
-" CTRL P
+"
+"" CTRL P
   Plugin 'ctrlpvim/ctrlp.vim'
-
-" HTML
+  Plugin 'iurifq/ctrlp-rails.vim'
+"" HTML
   Plugin 'mattn/emmet-vim' 
-
-" JAVASCRIPT
+"
+"" JAVASCRIPT
   Plugin 'pangloss/vim-javascript'
-
+"
   Plugin 'marijnh/tern_for_vim' 
- 
+
 " TO SEE LATER...{{{
 " ctags
 " ctag
@@ -130,6 +130,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " #####################  BEGIN NERDTREE GIT######################{{{
 " --------------------------------------------------------------- 
+
 set shell=sh
 let g:NERDTreeIndicatorMapCustom = {
   \ "Modified"  : "✹",
@@ -144,46 +145,46 @@ let g:NERDTreeIndicatorMapCustom = {
   \ }
 "}}}
 
-" ##################### BEGIN AIRLINE status and theme ##########{{{
-" ---------------------------------------------------------------
+"" ##################### BEGIN AIRLINE status and theme ##########{{{
+"" ---------------------------------------------------------------
  set showtabline=0
 
  set laststatus=2  " Always display the status line
 
  let g:airline_symbols = {}
 
-  let g:airline_detect_modified=1
+ let g:airline_detect_modified=1
+
+ let g:airline_detect_paste=1
+
+ let g:airline_detect_crypt=1
   
-	let g:airline_detect_paste=1"
+ let g:airline_detect_spell=1
 
-  let g:airline_detect_crypt=1
-  
-	let g:airline_detect_spell=1
+ let g:airline_detect_iminsert=0
 
-  let g:airline_detect_iminsert=0
+ let g:airline_inactive_collapse=1
 
-  let g:airline_inactive_collapse=1
+ let g:airline_powerline_fonts = 1
 
-  let g:airline_powerline_fonts = 1
+ let g:airline_extensions = ['branch', 'tabline']
 
-  let g:airline_extensions = ['branch', 'tabline']
+ let g:airline_theme='jellybeans'
 
-  let g:airline_theme='jellybeans'
+ let g:airline_section_y = 'BN: %{bufnr("%")}'
 
-  let g:airline_section_y = 'BN: %{bufnr("%")}'
-
-  let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R' : 'R',
-    \ 'c'  : 'C',
-    \ 'v'  : 'V',
-    \ 'V'  : 'V',
-    \ '' : 'V',
-    \ 's'  : 'S',
-    \ 'S' : 'S',
-    \ }
+"  let g:airline_mode_map = {
+"    \ '__' : '-',
+"    \ 'n'  : 'N',
+"    \ 'i'  : 'I',
+"    \ 'R' : 'R',
+"    \ 'c'  : 'C',
+"    \ 'v'  : 'V',
+"    \ 'V'  : 'V',
+"    \ '' : 'V',
+"    \ 's'  : 'S',
+"    \ 'S' : 'S',
+"    \ }
 
   let g:airline#extensions#tabline#left_sep = ' '
 
@@ -218,9 +219,11 @@ let g:NERDTreeIndicatorMapCustom = {
   let g:airline_symbols.whitespace = 'Ξ'
 
 " #################### END AIRLINE status and theme ###########
-" -------------------------------------------------------------
+"" -------------------------------------------------------------
 "}}}
-
+ 
+ 
+ 
 " vim - javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
@@ -247,47 +250,47 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 
-" #################### BEGIN  EMMET ###########################{{{
-" -------------------------------------------------------------
+"" #################### BEGIN  EMMET ###########################{{{
+"" -------------------------------------------------------------
 	let g:user_emmet_mode='a'    "enable all function in all mode.
-" #################### END  EMMET #############################
-" -------------------------------------------------------------
+"" #################### END  EMMET #############################
+"" -------------------------------------------------------------
 "}}}
-
-" #################### BEGIN FUGIVITE #########################{{{
-" -------------------------------------------------------------
+"
+"" #################### BEGIN FUGIVITE #########################{{{
+"" -------------------------------------------------------------
 set statusline=%{fugitive#statusline()}
-
+"
 set statusline=%{fugitive#head()}
-" #################### END FUGITIVE ###########################
-" -------------------------------------------------------------
+"" #################### END FUGITIVE ###########################
+"" -------------------------------------------------------------
 "}}}
-
-
-
-" #################### BEGIN SYNTASTIC AND CHACKERS ###########{{{
-" -------------------------------------------------------------
+"
+"
+"
+"" #################### BEGIN SYNTASTIC AND CHACKERS ###########{{{
+"" -------------------------------------------------------------
 set statusline+=%#warningmsg#
-
+"
 set statusline+=%{SyntasticStatuslineFlag()}
-
+"
 set statusline+=%*
-
-
+"
+"
 let g:syntastic_error_symbol='✗'
-
+"
 let g:syntastic_warning_symbol='⚠'
-
+"
 let g:syntastic_style_error_symbol = '✗'
-
+"
 let g:syntastic_style_warning_symbol = '⚠'
-
+"
 let g:syntastic_auto_loc_list=1
-
+"
 let g:syntastic_aggregate_errors = 1
-
+"
 let g:syntastic_always_populate_loc_list = 1
-
+"
 let g:syntastic_auto_loc_list =1 
 
 let g:syntastic_check_on_open =1 
@@ -305,14 +308,14 @@ let g:syntastic_coffeescript_checkers = ['coffeelint']
 
 " ------------- Python
 let g:syntastic_python_checkers = ['pylint', 'flake8', 'python']
-
-" #################### END SYNTASTIC AND CHACKERS #############
-" -------------------------------------------------------------}}}
-
-
-
-" -------------------- BEGIN CTRL+P ---------------------------{{{
-" -------------------------------------------------------------
+"
+"" #################### END SYNTASTIC AND CHACKERS #############
+"" -------------------------------------------------------------}}}
+"
+"
+"
+"" -------------------- BEGIN CTRL+P ---------------------------{{{
+"" -------------------------------------------------------------
 let g:ctrlp_working_path_mode = 'ra'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
@@ -332,18 +335,31 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
-" -------------------- BEGIN COLORSCHEME-----------------------
-" -------------------------------------------------------------
-colorscheme spacegray "monokai
-  
-set term=screen-256color
-
-" --------------------  END COLORSCHEME-----------------------
-" -------------------------------------------------------------
-
-
+"" -------------------- BEGIN COLORSCHEME-----------------------
+"" -------------------------------------------------------------
+colorscheme   monokai "spacegray 
+"  
+"set term=screen-256color
+"
+"" --------------------  END COLORSCHEME-----------------------
+"" -------------------------------------------------------------
+"
+hi Normal ctermbg=none
+hi NonText ctermbg=none
+hi LineNr ctermbg=none
+highlight Comment cterm=italic
 "" vim JavaScript
 let g:javascript_plugin_jsdoc = 1
+
+
+"rails search 
+if filereadable('config/environment.rb') && isdirectory('app')
+    " This looks like a Rails app.
+    nnoremap <leader>ec :CtrlP app/controllers<CR>
+    nnoremap <leader>eh :CtrlP app/helpers<CR>
+    nnoremap <leader>em :CtrlP app/models<CR>
+    nnoremap <leader>ev :CtrlP app/views<CR>
+endif
 
 "" -------------------- BASIC SETUP ----------------------------{{{
 "-------------------------------------------------------------
@@ -507,3 +523,4 @@ nnoremap <F4> :BD<CR>
 " " Move to the next buffer with "gn"
  nnoremap <F6> :bn<CR>
 "}}}
+
